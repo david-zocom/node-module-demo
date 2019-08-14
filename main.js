@@ -18,7 +18,7 @@ fs.readFile('./' + book, readOptions, (err, data) => {
 	// console.log('readFile: err=', err, ', data=', data);
 });
 
-const textToSave = `filhantering visar hur vi fs-modulen i Node
+const textToSave = `filhantering visar hur vi använder fs-modulen i Node
 `;  // `\n` går lika bra
 const writeOptions = {
 	flag: 'a'
