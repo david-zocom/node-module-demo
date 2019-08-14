@@ -21,7 +21,8 @@ fs.readFile('./' + book, readOptions, (err, data) => {
 const textToSave = `filhantering visar hur vi använder fs-modulen i Node
 `;  // `\n` går lika bra
 const writeOptions = {
-	flag: 'a'
+	flag: 'a',
+	encoding: 'utf8'
 }
 fs.writeFile('./blank.txt', textToSave, writeOptions, err => {
 	if( err ) {
@@ -31,6 +32,14 @@ fs.writeFile('./blank.txt', textToSave, writeOptions, err => {
 	}
 })
 
+console.log('Nu ska vi läsa från samma fil, fast som en stream');
+let fsReader = fs.createReadStream('./' + book, readOptions);
+fsReader.on('data', chunk => {
+		console.log('Tog emot ett chunk från filströmmen: ', chunk);
+})
+fsReader.on('end', () => {
+	console.log('Nu har vi läst hela filen.');
+})
 
 
 
